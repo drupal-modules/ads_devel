@@ -49,7 +49,7 @@ function ads_devel_watchdog($log_entry) {
 function ads_devel_cron() {
   // Remove debug file if it's too big.
   $debug_file = file_directory_temp() . '/drupal_debug.txt';
-  file_exists($debug_file) &&
+  file_exists($debug_file) && variable_get('ads_devel_debug', TRUE) &&
     filesize($debug_file) > MAX_SIZE_DEBUG * pow(1024, 2) &&
       unlink($debug_file);
 }
