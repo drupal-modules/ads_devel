@@ -12,48 +12,42 @@
  * Add/edit options to cache-clear command
  */
 function ads_devel_drush_cache_clear(&$types) {
-  try {
 
-    // Resets the cached information about entity types.
-    if (function_exists('entity_info_cache_clear')) {
-      $types['entity'] = 'entity_info_cache_clear';
-    }
-
-    // Flush all cache from Memcache/Memcached.
-    // See: https://www.drupal.org/node/2309657
-    if (module_exists('memcache')) {
-      $types['memcache'] = 'memcache_invalidate_cache';
-    }
-
-    // Flush all temporary cache from Varnish if used.
-    // See: https://www.drupal.org/node/2309663
-    if (module_exists('varnish')) {
-      $types['varnish'] = 'varnish_purge_all_pages';
-    }
-
-    // Clear PHP OPCache cache if used.
-    if (function_exists('opcache_reset')) {
-      $types['opcache'] = 'opcache_reset';
-    }
-
-    // Clear PHP XCache cache if used.
-    if (function_exists('xcache_clear_cache')) {
-      $types['xcache'] = 'xcache_clear_cache';
-    }
-
-    // Clear PHP eAccelerator cache if used.
-    if (function_exists('eaccelerator_clear')) {
-      $types['accelerator'] = 'eaccelerator_clear';
-    }
-
-    // Clear PHP APC cache if used.
-    if (function_exists('apc_clear_cache')) {
-      $types['apc'] = 'apc_clear_cache';
-    }
-
+  // Resets the cached information about entity types.
+  if (function_exists('entity_info_cache_clear')) {
+    $types['entity'] = 'entity_info_cache_clear';
   }
-  catch (Exception $e) {
-    throw new Exception(t('Failed to clear the cache. Error: %e', array('%e' => print_r($e, TRUE))));
+
+  // Flush all cache from Memcache/Memcached.
+  // See: https://www.drupal.org/node/2309657
+  if (module_exists('memcache')) {
+    $types['memcache'] = 'memcache_invalidate_cache';
+  }
+
+  // Flush all temporary cache from Varnish if used.
+  // See: https://www.drupal.org/node/2309663
+  if (module_exists('varnish')) {
+    $types['varnish'] = 'varnish_purge_all_pages';
+  }
+
+  // Clear PHP OPCache cache if used.
+  if (function_exists('opcache_reset')) {
+    $types['opcache'] = 'opcache_reset';
+  }
+
+  // Clear PHP XCache cache if used.
+  if (function_exists('xcache_clear_cache')) {
+    $types['xcache'] = 'xcache_clear_cache';
+  }
+
+  // Clear PHP eAccelerator cache if used.
+  if (function_exists('eaccelerator_clear')) {
+    $types['accelerator'] = 'eaccelerator_clear';
+  }
+
+  // Clear PHP APC cache if used.
+  if (function_exists('apc_clear_cache')) {
+    $types['apc'] = 'apc_clear_cache';
   }
 
 }
