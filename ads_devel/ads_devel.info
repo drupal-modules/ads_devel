@@ -13,7 +13,6 @@ dependencies[] = field_ui
 ctools[] = context:context:3
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
-features[variable][] = devel_use_uncompressed_jquery
 features[features_api][] = api:2
 features_api[] = api:2
 project path = sites/all/modules/ads/ads_features
